@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Login</title>
+        <link href="loginstyle.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            function login()
+            { 
+                var username=document.getElementById("txtUsername");
+                var password=document.getElementById("txtPassword");
+                var x=username.value;
+                if (username.value.length == 0 || password.value.length == 0)
+                {
+                    
+                    document.getElementById("showmsg").setAttribute("class","showBox");
+                }
+                else
+                {
+                    localStorage.setItem("usernameKey",x);
+                    window.location="home.html";
+                }
+            }
+
+            function hideRequired(icon)
+            {
+                icon.parentNode.setAttribute("class","hideBox"); 
+            }
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <h2>Login</h2>
+            <form>
+                <div class="inputBox">
+                    <label>Username</label>
+    
+                    <input type="text" id="txtUsername" />
+                </div>
+                <div class="inputBox">
+                    <label>Password</label>
+    
+                    <input type="password" id="txtPassword" />
+                </div>
+                <input type="button" value="Sign In" onclick="login()" />
+            </form>
+            <div class="hideBox" id="showmsg">
+                <label>Please Enter Username & Password</label>
+                <img src="Images/Icons/Close.png" width="20" onclick="hideRequired(this)"/>
+            </div>
+        </div>
+    </body>
+</html>
