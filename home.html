@@ -6,7 +6,7 @@
         <script type="text/javascript">
         
         function active(x){
-            debugger;
+            //debugger;
             var nav = document.getElementsByClassName("HeaderMenu");
             var activeOption = nav[0].getElementsByClassName("liClick");
             var z=activeOption[0];
@@ -22,7 +22,7 @@
         }
 
         function addToCart(item){
-            debugger;
+            //debugger;
             document.getElementById("DivShoppingList").setAttribute("class","showBox");
             
             var table= document.getElementById("tableItems");
@@ -101,26 +101,38 @@
             debugger;
             var table=document.getElementById("tableItems");
             var code=document.getElementById("txtDiscount").value;
-            if (code=="EL50")
+            var str=code.substr(0,2);
+            var num=code.substr(2)
+            if (str=="EL"&& isNaN(num)==false)
             {
                 var tr = table.getElementsByClassName("Electronic");
-                for(var i=0; i<tr.length ; i++)
+                if (num>0 && num<=100)
                 {
+                    var discount=num/100;
+                    for(var i=0; i<tr.length ; i++)
+                    {
                     var sp= tr[i].getElementsByTagName("span");
                     var price = parseInt(sp[1].textContent);
-                    var newPrice= price-(price*0.5);
+                    var newPrice= price-(price*discount);
                     sp[1].textContent= newPrice+" JD";
+                    }
                 }
             }
-            else if (code=="PR10")
+            else if (str=="PR"&& isNaN(num)==false)
+            {
                 var tr = table.getElementsByClassName("Perfume");
-                for(var i=0; i<tr.length ; i++)
+                if (num>0 && num<=100)
                 {
+                    var discount=num/100;
+                    for(var i=0; i<tr.length ; i++)
+                    {
                     var sp= tr[i].getElementsByTagName("span");
                     var price = parseInt(sp[1].textContent);
-                    var newPrice= price-(price*0.1);
+                    var newPrice= price-(price*discount);
                     sp[1].textContent= newPrice+" JD";
+                    }
                 }
+            }
         }
 
         </script>
